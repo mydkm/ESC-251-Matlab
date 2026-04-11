@@ -1,0 +1,30 @@
+% Params.
+R = 3.3 %ohms
+L = 0.1 %H
+J1 = 9.64 * 10^-6 %kg*m^2
+m = 0.033 %kg
+r = 0.0242 %m
+B = 0.01 %N*m*s
+Km = 0.0280 %N*m*(A^-1)
+Kg = 0.0280 %V*s*(rad^-1)
+J2 = 0.5 * m * (r^2) %kg*m^2
+N = 2
+Jeq = (N^2)*J1 + J2 %kg*m^2
+
+syms s t
+F = (N*Km) / (L*Jeq*s^2 + (B*L + R*Jeq)*s + (R*B + Kg*Km*N^2))
+
+Es(s) = 10/s
+Omega_step = 
+
+
+omega_t = ilaplace(F)
+
+% Plot the time response of the system
+tt = 0:0.01:1; % time vector
+response = double(subs(omega_t, t)); % evaluate the inverse Laplace transform
+plot(tt, response);
+xlabel('Time (s)');
+ylabel('Response');
+title('Time Response of the System');
+grid on;
