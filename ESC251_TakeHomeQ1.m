@@ -43,7 +43,7 @@ omega_tb = ilaplace(Omega_stepb, s, t)
 
 % plot for part (a)
 figure(1)
-tt = 0:0.001:0.500; % time vector
+tt = 0:0.0001:0.5000; % time vector
 response = double(subs(omega_t, t, tt)); % evaluate the inverse Laplace transform
 plot(tt, response);
 xlabel('Time (s)');
@@ -103,11 +103,11 @@ Ce = [1 0];
 De = 0;
 
 sysFss = ss(Ae,Be,Ce,De);
-u = 10*ones(size(tt));
+u2 = zeros(size(tt));
 x0_g = [100; 0];
 
 figure(4)
-responseG = lsim(sysFss, u, tt, x0_g);
+responseG = lsim(sysFss, u2, tt, x0_g);
 plot(tt, responseG)
 xlabel('Time (s)')
 ylabel('Angular Velocity (rad/s)')
